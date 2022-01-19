@@ -50,7 +50,7 @@ public class Week2 {
 
         System.out.println("Hi there " + name + "!");
 
-        System.out.println("Enter the first number to add: ");
+        System.out.println(name + ", Enter the first number to add: ");
 
         // converts the string input into an integer
         int yourFirstNumber = Integer.parseInt(keyboard.nextLine());
