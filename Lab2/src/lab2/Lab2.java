@@ -12,10 +12,18 @@ public class Lab2 {
 
         String answer = keyboard.nextLine();
 
+        // loop if want to play
+        // if yes
         while (answer.equalsIgnoreCase("y")) {
+            // computer is rock
+            // ask the player for Rock Paper or Scissors
             System.out.println("Do you throw Rock Paper or Scissors?");
             String choice = keyboard.nextLine();
 
+            // compare if win, lose, or draw
+            // win is if player is paper
+            // lose is if player is scissors
+            // draw is if player is rock
             if (choice.equalsIgnoreCase("paper")) {
                 System.out.println("You win!");
             } else if (choice.equalsIgnoreCase("scissors")) {
@@ -25,21 +33,12 @@ public class Lab2 {
             } else {
                 System.out.println("That's not Rock, Paper, or Scissors...");
             }
-
+            // ask if they want to play again ( y/n )
             System.out.println("Do you want to play again? (y/n)");
             answer = keyboard.nextLine();
 
         }
 
-        // loop if want to play
-        // if yes
-        // computer is rock
-        // ask the player for Rock Paper or Scissors
-        // compare if win, lose, or draw
-        // win is if player is paper
-        // lose is if player is scissors
-        // draw is if player is rock
-        // ask if they want to play again ( y/n )
     }
 
 }
