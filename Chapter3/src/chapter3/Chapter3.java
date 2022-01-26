@@ -66,6 +66,10 @@ public class Chapter3 {
         System.out.print(10 / 3); // integer division - lose any decimal
         System.out.println(" Remainder: " + 10 % 3); // remainder or modulus operator
 
+        
+        System.out.println("Math.ceil(10/3) == " + Math.ceil(10/3));
+        System.out.println("Math.ceil(10.0/3) == " + Math.ceil(10.0/3));
+        
         // if either side of an operation is a double, the answer is a double
         System.out.println("10 / 3 == " + 10.0 / 3 );
         
@@ -90,6 +94,8 @@ public class Chapter3 {
         System.out.println("Total Price: " + currencyFormatter.format(totalPrice));
         System.out.println("Total Price: " + 
                 NumberFormat.getCurrencyInstance().format(totalPrice));
+        
+        
         
         
         
