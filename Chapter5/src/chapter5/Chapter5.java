@@ -5,17 +5,33 @@ import java.util.Scanner;
 public class Chapter5 {
 
     public static void main(String[] args) {
-        printHello(); // nice name for a chunk of code
+//        printHello(); // nice name for a chunk of code
         Scanner keyboard = new Scanner(System.in);
         System.out.println("What's your name?");
         String name = keyboard.nextLine();
-        System.out.println("Hi there " + name);
-        printHello(); // it's repeatable
+        System.out.println("memory address of the name: " + System.identityHashCode(name));
 
+        upperCaseString(name);
+        System.out.println("Hi there " + name);
+
+//        printHello(); // it's repeatable
         numberGuessingGame();
     }
-    
-    public static void numberGuessingGame(){
+
+    // objects are passed by reference - where it is in memory
+    public static void upperCaseString(String value) {
+        System.out.println(value);
+        System.out.println("memory address of the value: " + System.identityHashCode(value));
+
+        // strings are immuatable, so this actually makes a new string in memory
+        value = value.toUpperCase();
+
+        System.out.println(value);
+        System.out.println("memory address of the value: " + System.identityHashCode(value));
+
+    }
+
+    public static void numberGuessingGame() {
         String play = askTheUserIfTheyWantToPlay();
 
         while (play.equalsIgnoreCase("y")) {
@@ -37,7 +53,10 @@ public class Chapter5 {
         System.out.println("Have a nice day!");
     }
 
+    // primitives are passed by value ( as a copy )
+    // the guess that was passed as the argument can't be changed as it is back in main
     public static void displayTooHighOrTooLow(int guess, int randomNumber) {
+        // guess = 42; // won't affect the value of guess in main
         if (guess < randomNumber) {
             System.out.println("Too low!");
         } else {
