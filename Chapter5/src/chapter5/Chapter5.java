@@ -7,6 +7,23 @@ public class Chapter5 {
     public static void main(String[] args) {
 //        printHello(); // nice name for a chunk of code
         Scanner keyboard = new Scanner(System.in);
+
+        // handing exceptions - not crashing!
+        int favoriteNumber = -1;
+
+        while (favoriteNumber == -1) {
+            // going to do sometihng that might cause an exception/crash
+            try {
+                System.out.println("Enter your favorite number");
+                String input = keyboard.nextLine();
+                favoriteNumber = Integer.parseInt(input);
+            } // catch the exception if it does happen so we don't crash 
+            catch (NumberFormatException exception) {
+                System.out.println(exception);
+            }
+        }
+        System.out.println(favoriteNumber);
+
         System.out.println("What's your name?");
         String name = keyboard.nextLine();
         System.out.println("memory address of the name: " + System.identityHashCode(name));
