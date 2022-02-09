@@ -61,5 +61,11 @@ public class Lab4 {
         }
 
     }
+    
+    public static int promptForIntValue(String prompt){
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println(prompt);
+        return Integer.parseInt(keyboard.nextLine());
+    }
 
 }
