@@ -1,6 +1,8 @@
 
 package lab6;
 
+import java.util.Random;
+
 public class TalkingStuffedAnimal {
     private String name;
     private String color;
@@ -15,6 +17,11 @@ public class TalkingStuffedAnimal {
     }    
     
     public String squeeze(){
+        // other option for random
+        Random random = new Random();
+         // gets a number 0-9, adds 1 to make it 1-10
+        int randomNumber = random.nextInt(10) + 1;
+        
         if ((int)( Math.random()*10 + 1) == 1 ){
             batteryHasPower = false;
         }
