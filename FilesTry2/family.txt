@@ -1,0 +1,8 @@
+Eric|100
+Joy|90
+Jeb|80
+Vivi|70
+Journey|60
+Jubilee|50
+Jackson|40
+baby7|0
