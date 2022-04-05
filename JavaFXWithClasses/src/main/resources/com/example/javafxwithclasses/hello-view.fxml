@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxwithclasses.HelloController">
+   <children>
+      <Label fx:id="label" layoutX="107.0" layoutY="259.0" text="Receipt: " />
+      <Button fx:id="button" layoutX="448.0" layoutY="291.0" mnemonicParsing="false" onAction="#buttonClicked" text="Buy Coffee" />
+      <RadioButton fx:id="smallRadioButton" layoutX="63.0" layoutY="71.0" mnemonicParsing="false" onAction="#sizeButtonClicked" text="Small">
+         <toggleGroup>
+            <ToggleGroup fx:id="size" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="mediumRadioButton" layoutX="63.0" layoutY="105.0" mnemonicParsing="false" onAction="#sizeButtonClicked" text="Medium" toggleGroup="$size" />
+      <RadioButton fx:id="largeRadioButton" layoutX="63.0" layoutY="139.0" mnemonicParsing="false" onAction="#sizeButtonClicked" selected="true" text="Large" toggleGroup="$size" />
+      <RadioButton fx:id="twoPercentMilkRadioButton" layoutX="202.0" layoutY="45.0" mnemonicParsing="false" onAction="#milkBoxChecked" text="2% Milk">
+         <toggleGroup>
+            <ToggleGroup fx:id="milk" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="wholeMilkRadioButton" layoutX="201.0" layoutY="79.0" mnemonicParsing="false" onAction="#milkBoxChecked" text="Whole Milk" toggleGroup="$milk" />
+      <RadioButton fx:id="halfAndHalfRadioButton" layoutX="203.0" layoutY="113.0" mnemonicParsing="false" onAction="#milkBoxChecked" text="Half and Half" toggleGroup="$milk" />
+      <RadioButton fx:id="soyMilkRadioButton" layoutX="203.0" layoutY="149.0" mnemonicParsing="false" onAction="#milkBoxChecked" text="Soy Milk" toggleGroup="$milk" />
+      <RadioButton fx:id="noMilkRadioButton" layoutX="198.0" layoutY="14.0" mnemonicParsing="false" onAction="#milkBoxChecked" selected="true" text="No milk" toggleGroup="$milk" />
+   </children>
+</AnchorPane>
