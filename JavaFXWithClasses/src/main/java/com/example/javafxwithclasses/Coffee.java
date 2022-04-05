@@ -6,17 +6,19 @@ public class Coffee {
     private String milk;
     private double milkCost;
     private String sugar;
+    private double milkServings;
 
     public Coffee() {
         size = "large";
         milk = "no milk";
         milkCost = 0;
-        sugar = "";
+        sugar = " with no sugar";
+        milkServings = 0;
     }
 
     @Override
     public String toString(){
-        return size + " coffee - Milk: " + milk + " - Sugar: " + sugar + " $" + getTotalCost();
+        return size + " coffee - " + (int)milkServings + " " + milk + " - " + sugar + " $" + getTotalCost();
     }
 
     public void setSizeToSmall(){
@@ -42,26 +44,31 @@ public class Coffee {
     public void setNoMilk(){
         milk = "no milk";
         milkCost = 0;
+        milkServings = 0;
     }
 
-    public void addTwoPercentMilk(){
+    public void addTwoPercentMilk(double servings){
         milk = "two percent milk";
         milkCost = 0;
+        milkServings = servings;
     }
 
-    public void addWholeMilk(){
+    public void addWholeMilk(double servings){
         milk = "whole milk";
         milkCost = 0;
+        milkServings = servings;
     }
 
-    public void addHalfAndHalfMilk(){
+    public void addHalfAndHalfMilk(double servings){
         milk = "half and half";
         milkCost = 0;
+        milkServings = servings;
     }
 
-    public void addSoyMilk(){
+    public void addSoyMilk(double servings){
         milkCost = .5;
         milk = "Soy Milk";
+        milkServings = servings;
     }
 
     public void setSugar(String sugar) {

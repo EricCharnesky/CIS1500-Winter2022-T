@@ -1,8 +1,11 @@
 package com.example.javafxwithclasses;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import java.util.ArrayList;
 
 public class HelloController {
 
@@ -32,20 +35,39 @@ public class HelloController {
     private ToggleGroup milk;
     @FXML
     private RadioButton noMilkRadioButton;
+    @FXML
+    private Slider milkServingSlider;
+    @FXML
+    private CheckBox sugarCheckBox;
+    @FXML
+    private CheckBox sugarFreeSugarCheckBox;
 
-    @Deprecated
+    private ArrayList<Coffee> order;
+    @FXML
+    private Label currentDrinkLabel;
+
+    // essentially the constructor, but runs AFTER fxml stuff is setup
     public void initialize() {
         coffee = new Coffee();
+        order = new ArrayList<>();
         updateCoffeeReceipt();
     }
 
     public void updateCoffeeReceipt() {
-        label.setText(coffee.toString());
-    }
+        currentDrinkLabel.setText(coffee.toString());
 
-    @FXML
-    public void buttonClicked(ActionEvent actionEvent) {
-        updateCoffeeReceipt();
+        String receipt = "Drinks in Order:\n";
+        double grandTotal = 0;
+        int drinkCount = 1;
+        for ( Coffee coffeeInOrder : order ){
+            receipt += "Drink #" + drinkCount + " " + coffeeInOrder.toString() + "\n";
+            drinkCount++;
+            grandTotal += coffeeInOrder.getTotalCost();
+        }
+
+        receipt += "Grand Total: $" + grandTotal;
+
+        label.setText(receipt);
     }
 
     @FXML
@@ -62,17 +84,54 @@ public class HelloController {
 
     @FXML
     public void milkBoxChecked(ActionEvent actionEvent) {
-        if (twoPercentMilkRadioButton.isSelected()) {
-            coffee.addTwoPercentMilk();
-        } else if (wholeMilkRadioButton.isSelected()) {
-            coffee.addWholeMilk();
-        } else if (halfAndHalfRadioButton.isSelected()) {
-            coffee.addHalfAndHalfMilk();
-        } else if (soyMilkRadioButton.isSelected()) {
-            coffee.addSoyMilk();
-        } else if (noMilkRadioButton.isSelected()) {
+        updateMilk();
+    }
+
+    private void updateMilk() {
+        if ( milkServingSlider.getValue() == 0 || noMilkRadioButton.isSelected() ){
             coffee.setNoMilk();
+        } else if (twoPercentMilkRadioButton.isSelected()) {
+            coffee.addTwoPercentMilk(milkServingSlider.getValue());
+        } else if (wholeMilkRadioButton.isSelected()) {
+            coffee.addWholeMilk(milkServingSlider.getValue());
+        } else if (halfAndHalfRadioButton.isSelected()) {
+            coffee.addHalfAndHalfMilk(milkServingSlider.getValue());
+        } else if (soyMilkRadioButton.isSelected()) {
+            coffee.addSoyMilk(milkServingSlider.getValue());
         }
+        updateCoffeeReceipt();
+    }
+
+    @FXML
+    public void milkSliderMouseReleased(Event event) {
+        updateMilk();
+    }
+
+    @FXML
+    public void sugarBoxChecked(ActionEvent actionEvent) {
+        if ( sugarCheckBox.isSelected() || sugarFreeSugarCheckBox.isSelected()){
+            String sugar = "";
+            if ( sugarCheckBox.isSelected() ){
+                sugar += " with sugar";
+            }
+            if ( sugarFreeSugarCheckBox.isSelected()){
+                sugar += " with sugar free 'sugar'";
+            }
+            coffee.setSugar(sugar);
+        } else{
+            coffee.setSugar(" with no sugar");
+        }
+        updateCoffeeReceipt();
+    }
+
+    @FXML
+    public void addCoffeeToOrderButtonClicked(ActionEvent actionEvent) {
+        order.add(coffee);
+        coffee = new Coffee();
+        sugarCheckBox.setSelected(false);
+        sugarFreeSugarCheckBox.setSelected(false);
+        largeRadioButton.setSelected(true);
+        noMilkRadioButton.setSelected(true);
         updateCoffeeReceipt();
     }
 }
